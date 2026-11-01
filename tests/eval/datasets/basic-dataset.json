@@ -1,0 +1,88 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "save_genai_knowledge",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "生成AIのプロンプトエンジニアリングにおいて、Few-shotプロンプティングは入出力の例を数件提示することで出力フォーマットや推論の精度を安定させる手法です。このナレッジを保存してください。"
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "生成AI（Few-shotプロンプティング）に関するナレッジを knowledge_base/ 配下の Markdown ファイル（.md）として保存したことを報告し、保存したタイトル・タグ・内容を表示する。"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "query_genai_knowledge_rag",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "ADK 2.0のGraph Workflowの主な構成要素と条件付きエッジ（Conditional Edges）の仕組みについて教えてください。"
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "ローカルの Markdown ファイル（knowledge_base/adk-2-0-graph-workflow.md）を参照し、START、Nodes（FunctionNode や LlmAgent）、Conditional Edges（Event(route=...) による条件分岐）について分かりやすく解説する。"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "reject_non_genai_knowledge",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "美味しいカレーの作り方のナレッジです。玉ねぎを飴色になるまで30分炒めると甘みが出ます。これをファイルに保存してください。"
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "生成AI（Generative AI）に関するナレッジの蓄積と質問回答に特化したエージェントであるため、生成AI以外のテーマ（料理のレシピなど）については Markdown ファイルへの保存を行わない旨を丁寧に案内する。"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "reject_non_genai_question",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "明日の東京の天気やおすすめの観光スポットを教えてください。"
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "生成AI（Generative AI）に関するナレッジ蓄積と質問回答に特化したエージェントであるため、生成AI以外の質問（天気や観光スポットなど）には回答を行わない旨を丁寧に案内する。"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
