@@ -25,8 +25,18 @@ def _client() -> genai.Client:
     """
     client = getattr(_local, "client", None)
     if client is None:
-        # AI Studio (GEMINI_API_KEY) or Gemini platform (ADC).
-        client = _local.client = genai.Client()
+        # AI Studio (GEMINI_API_KEY) or Gemini platform (ADC) with 503 retry resilience.
+        client = _local.client = genai.Client(
+            http_options=types.HttpOptions(
+                retry_options=types.HttpRetryOptions(
+                    attempts=5,
+                    initial_delay=1.0,
+                    max_delay=16.0,
+                    exp_base=2.0,
+                    http_status_codes=[408, 429, 500, 502, 503, 504],
+                )
+            )
+        )
     return client
 
 
